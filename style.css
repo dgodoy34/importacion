@@ -18,12 +18,18 @@ body {
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width: 200px;
+    text-align: center;
+    transition: transform 0.2s; /* Añadir efecto de hover */
+}
+
+.producto:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
 }
 
 .producto img {
     width: 100%;
-    height: 150px; /* Altura fija */
-    object-fit: cover; /* Ajusta la imagen sin deformarla */
+    height: 150px;
+    object-fit: cover;
     border-radius: 10px;
 }
 
@@ -35,54 +41,119 @@ button {
     cursor: pointer;
     width: 100%;
     margin-top: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
+button:hover {
+    background: #218838;
+}
+
+/* Estilos del Modal */
 .modal {
-    display: none; /* Inicialmente oculto */
-    position: fixed;
-    z-index: 1000;
+    display: none; /* Ocultar el modal por defecto */
+    position: fixed; /* Mantener el modal en la misma posición */
+    z-index: 1000; /* Asegurarse de que esté en la parte superior */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    align-items: center;
-    justify-content: center;
+    width: 40%; /* Ancho completo */
+    height: 90%; /* Alto completo */
+    overflow: auto; /* Habilitar scroll si es necesario */
+    background-color: rgb(0,0,0); /* Fondo negro */
+    background-color: rgba(0,0,0,0.8); /* Fondo negro con opacidad */
 }
 
-/* Contenedor de la imagen */
-.modal-contenido {
-    max-width: 80%;
-    max-height: 80%;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
-    animation: fadeIn 0.3s ease-in-out;
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% desde arriba y centrado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ancho del modal */
 }
 
-/* Botón de cerrar */
-.cerrar {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: white;
-    font-size: 40px;
+.close {
+    color: #aaa; /* Color del botón de cerrar */
+    float: right; /* Alinear a la derecha */
+    font-size: 28px;
     font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Color al pasar el mouse */
+    text-decoration: none;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.cerrar:hover {
-    color: #ff5050;
+
+/* Estilos del carrito */
+#carrito {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Animación de aparición */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.carrito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.carrito-item button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%; /* Bordes completamente redondeados */
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    width: 30px;
+    height: 30px;
+}
+
+.carrito-item button:hover {
+    background: #c82333;
+    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
+}
+
+/* Total del carrito */
+.total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilos del botón de finalizar compra */
+#finalizarCompra {
+    background: #007bff; /* Color azul */
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Mantener el padding reducido */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px; /* Tamaño de la fuente */
+    font-weight: bold;
+    margin-top: 20px; /* Espacio encima */
+    transition: background 0.3s, transform 0.2s;
+    width: auto; /* Cambiar de 100% a auto */
+    display: inline-block; /* Cambiar a inline-block para que el ancho se ajuste al contenido */
+}
+
+#finalizarCompra:hover {
+    background: #0056b3; /* Color más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
 }

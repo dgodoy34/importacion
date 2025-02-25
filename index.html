@@ -7,14 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h1>Catálogo de Productos</h1>
     <div id="catalogo" class="catalogo"></div>
 
-    <script src="script.js"></script>
-    <div id="modal" class="modal">
-        <span class="cerrar" onclick="cerrarModal()">&times;</span>
-        <img id="imagenModal" class="modal-contenido">
+    <!-- Modal de Imagen -->
+<div id="modalImagen" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="imagenAmpliada" src="" alt="Imagen ampliada" style="width: 100%;">
     </div>
+</div>
+
+
     
+    
+    <!-- Carrito de Compras -->
+<h2>Carrito de Compras</h2>
+<div id="carrito" class="carrito"></div>
+<div id="total" class="total">Total: $0</div>
+<button id="finalizarCompra" onclick="enviarCorreo()">Finalizar Compra</button>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
