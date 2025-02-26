@@ -14,7 +14,7 @@ const productos = [
     { nombre: "Vaso cervecero con abridor 600ml", precio: 17500, imagen: "img/producto13.jpg" },
     { nombre: "Linterna P50 Táctica Militar Led Zoom Recargable", precio: 14990, imagen: "img/producto14.jpg" },
     { nombre: "Reflector Solar - Lampara Jardín Exterior", precio: 24990, imagen: "img/producto15.jpg" },
-    { nombre: "Auriculares Estéreo Sony Wireless Bluetooth", precio: 25990, imagen: "img/producto16.jpg" },
+    { nombre: "Auriculares Estéreo Sony Wireless Bluetooth", precio: 38990, imagen: "img/producto16.jpg" },
     { nombre: "Reflector LED 30W de Alta Potencia para Ext e Int", precio: 18000, imagen: "img/producto17.jpg" },
     { nombre: "Reflector LED 10W de Alta Potencia para Ext e Int", precio: 15000, imagen: "img/producto17.jpg" }
 
