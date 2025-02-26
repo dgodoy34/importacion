@@ -4,6 +4,28 @@ body {
     background-color: #f4f4f4;
 }
 
+/* Encabezado con nombre y logo */
+header {
+    background-color: #520404;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 60%;
+    margin-right: 18px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
 .catalogo {
     display: flex;
     flex-wrap: wrap;

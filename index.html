@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Encabezado con tu nombre y logo -->
+    <header>
+        <img src="img/tu-logo.png" alt="Logo de Diego" id="logo">
+        <h1>DGSHOPIMPORT - Tienda Online</h1>
+    </header>
 
     <h1>Catálogo de Productos</h1>
     <div id="catalogo" class="catalogo"></div>
@@ -26,7 +31,7 @@
 <h2>Carrito de Compras</h2>
 <div id="carrito" class="carrito"></div>
 <div id="total" class="total">Total: $0</div>
-<button id="finalizarCompra" onclick="enviarCorreo()">Finalizar Compra</button>
+<button id="finalizarCompra" onclick="enviarPedidoWhatsApp()">Finalizar Compra</button>
     
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
