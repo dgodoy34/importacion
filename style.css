@@ -41,7 +41,7 @@ body {
 #contenido header h1 {
     display: inline-block;
     vertical-align: middle;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 #contenido header h2 {
@@ -138,9 +138,33 @@ button:hover {
     }
 }
 
+#contenido header h1 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 2rem;
+}
+
+#contenido header h2 {
+    display: block;
+    font-size: 1rem;
+}
+
+
 @media (max-width: 576px) {
     #catalogo .col-md-4 {
         flex: 1 1 100%;
     }
 }
+
+#contenido header h1 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 2rem;
+}
+
+#contenido header h2 {
+    display: block;
+    font-size: 1rem;
+}
+
 
