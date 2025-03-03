@@ -1,181 +1,146 @@
+/* Estilo general */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
-}
-
-/* Encabezado con nombre y logo */
-header {
-    background-color: #520404;
-    color: white;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-header img {
-    width: 60px;
-    height: 60px;
-    border-radius: 60%;
-    margin-right: 18px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.catalogo {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.producto {
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-    transition: transform 0.2s; /* Añadir efecto de hover */
-}
-
-.producto:hover {
-    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
-}
-
-.producto img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-button {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #218838;
-}
-
-/* Estilos del Modal */
-.modal {
-    display: none; /* Ocultar el modal por defecto */
-    position: fixed; /* Mantener el modal en la misma posición */
-    z-index: 1000; /* Asegurarse de que esté en la parte superior */
-    left: 0;
-    top: 0;
-    width: 40%; /* Ancho completo */
-    height: 90%; /* Alto completo */
-    overflow: auto; /* Habilitar scroll si es necesario */
-    background-color: rgb(0,0,0); /* Fondo negro */
-    background-color: rgba(0,0,0,0.8); /* Fondo negro con opacidad */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% desde arriba y centrado */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Ancho del modal */
-}
-
-.close {
-    color: #aaa; /* Color del botón de cerrar */
-    float: right; /* Alinear a la derecha */
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black; /* Color al pasar el mouse */
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-/* Estilos del carrito */
-#carrito {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: white;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.carrito-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    padding: 10px;
-    background: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-.carrito-item button {
-    background: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 50%; /* Bordes completamente redondeados */
-    font-size: 14px;
-    font-weight: bold;
-    transition: background 0.3s, transform 0.2s;
-    width: 30px;
-    height: 30px;
-}
-
-.carrito-item button:hover {
-    background: #c82333;
-    transform: scale(1.1); /* Efecto de zoom al pasar el mouse */
-}
-
-/* Total del carrito */
-.total {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
     color: #333;
 }
 
-/* Estilos del botón de finalizar compra */
-#finalizarCompra {
-    background: #007bff; /* Color azul */
-    color: white;
-    border: none;
-    padding: 8px 16px; /* Mantener el padding reducido */
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px; /* Tamaño de la fuente */
-    font-weight: bold;
-    margin-top: 20px; /* Espacio encima */
-    transition: background 0.3s, transform 0.2s;
-    width: auto; /* Cambiar de 100% a auto */
-    display: inline-block; /* Cambiar a inline-block para que el ancho se ajuste al contenido */
+#login {
+    margin-top: 100px;
 }
 
-#finalizarCompra:hover {
-    background: #0056b3; /* Color más oscuro al pasar el mouse */
-    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+#login img {
+    width: 150px;
+    margin-bottom: 20px;
 }
+
+#login h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#login input {
+    max-width: 300px;
+}
+
+#contenido header {
+    background-color: #46535ee3;
+    color: rgb(243, 235, 235);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+#contenido header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+#contenido header h1 {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 3rem;
+}
+
+#contenido header h2 {
+    display: block;
+    font-size: 1rem;
+}
+
+/* Estilo del catálogo */
+#catalogo .card {
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#catalogo .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
+    height: 200px;
+}
+
+.card-body h5 {
+    font-size: 1.25rem;
+}
+
+.card-body p {
+    font-size: 1rem;
+}
+
+.card-body .btn {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.card-body .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo del carrito */
+#contador-carrito {
+    font-weight: bold;
+}
+
+/* Modal para la imagen */
+.modal-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Modal para el carrito */
+#modalCarrito .modal-body ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#modalCarrito .list-group-item {
+    font-size: 1rem;
+}
+
+#modalCarrito .modal-footer .btn {
+    width: 100%;
+    font-size: 1rem;
+}
+
+/* Mejorar la visibilidad del botón del carrito */
+#icono-carrito {
+    font-size: 1.5rem;
+}
+
+/* Estilo para los botones */
+button {
+    font-size: 1rem;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Responsividad para dispositivos pequeños */
+@media (max-width: 768px) {
+    #login input {
+        width: 80%;
+    }
+
+    #catalogo .col-md-4 {
+        flex: 1 1 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    #catalogo .col-md-4 {
+        flex: 1 1 100%;
+    }
+}
+

@@ -4,38 +4,369 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Encabezado con tu nombre y logo -->
-    <header>
-        <img src="img/tu-logo.png" alt="Logo de Diego" id="logo">
-        <h1>DGSHOPIMPORT - Tienda Online</h1>
-    </header>
-
-    <h1>Catálogo de Productos</h1>
-    <div id="catalogo" class="catalogo"></div>
-
-    <!-- Modal de Imagen -->
-<div id="modalImagen" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <img id="imagenAmpliada" src="" alt="Imagen ampliada" style="width: 100%;">
+    <!-- Login -->
+    <div id="login" class="container text-center mt-5">
+        <img src="img/tu-logo.png" alt="Logo" class="mb-3" width="150">
+        <h2>Acceso a la Tienda</h2>
+        <input type="password" id="clave" class="form-control w-50 mx-auto" placeholder="Ingresar clave">
+        <button class="btn btn-primary mt-2" onclick="verificarClave()">Ingresar</button>
+        <p id="mensaje"></p>
     </div>
-</div>
 
+    <!-- Contenido de la tienda -->
+    <div id="contenido" class="container mt-5 d-none">
+        <header class="text-center">
+            <img src="img/tu-logo.png" alt="Logo" width="100">
+            <h1>DGSHOPIMPORT - Tienda Online</h1>
+            <h2>NANTES 1150 - TRISTAN SUAREZ - whatsapp: +5491120226907</h2>
+        </header>
 
-    
-    
-    <!-- Carrito de Compras -->
-<h2>Carrito de Compras</h2>
-<div id="carrito" class="carrito"></div>
-<div id="total" class="total">Total: $0</div>
-<button id="finalizarCompra" onclick="enviarPedidoWhatsApp()">Finalizar Compra</button>
-    
+        <!-- Ícono del carrito -->
+        <div class="text-end">
+            <button class="btn btn-warning" onclick="mostrarCarrito()">🛒 Carrito <span id="contador-carrito" class="badge bg-danger">0</span></button>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="script.js"></script>
+        <!-- Catálogo -->
+        <div id="catalogo" class="row mt-4"></div>
+    </div>
 
+    <!-- Modal para imágenes -->
+    <div class="modal fade" id="modalImagen" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Imágenes del Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="imagenAmpliada" class="img-fluid" src="" alt="Imagen ampliada">
+                    <p id="descripcionImagen" class="mt-2"></p>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button class="btn btn-secondary btn-sm mx-2" id="prevButton" onclick="navegarImagen(-1)">Anterior</button>
+                        <button class="btn btn-secondary btn-sm mx-2" id="nextButton" onclick="navegarImagen(1)">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para el carrito -->
+    <div class="modal fade" id="modalCarrito" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="listaCarrito" class="list-group"></ul>
+                    <p class="mt-3"><strong>Total: $<span id="totalCarrito">0</span></strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" onclick="vaciarCarrito()">Vaciar Carrito</button>
+                    <button class="btn btn-success" onclick="finalizarCompra()">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de notificación -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Producto agregado al carrito.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const productos = [
+            { 
+                nombre: "Mini proyector 4k 5G", 
+                precio: 95999, 
+                imagenes: [
+                    { src: "img/producto1.jpg", descripcion: "El smart projector HY-300 pro es un miniproyector ULTRA HD que incluye MAGIS TV (instalado) y Android 11 Resolución nativa de 1280 x 720 px pero admite resoluciones hasta 4K Brillo: 4500 lúmenes Tamaño de imagen: Proyecta imágenes de 30 a 150 pulgadas Relación de contraste 8000-1 para imágenes nítidas y colores vibrantes Conectividad: Bluetooth Wi-Fi USB HDMI Tecnología de proyección: LED" },
+                    { src: "img/producto1_2.jpg", descripcion: "Ajuste automático de pantalla para eliminar barras negras Altavoces integrados para disfrutar de audio nítido Control remoto e interfaz intuitivos Diseño compacto y portátil" }
+                ]
+            },
+            { 
+                nombre: "Stik TV Android 4K", 
+                precio: 39990, 
+                imagenes: [
+                    { src: "img/producto2.jpg", descripcion: "Stik TV Android" },
+                    { src: "img/producto2_3.jpeg", descripcion: "Transforma tu experiencia de entretenimiento en casa con el Android Smart TV Stick de Novatix. Este dispositivo compacto y ligero, con un diseño de solo 1 cm de altura y 36 g de peso, se conecta fácilmente a tu televisor a través del cable HDMI incluido, permitiéndote disfrutar de tus series y películas favoritas en resolución 4K" },
+                    { src: "img/producto2_2.jpeg", descripcion: "Con una capacidad de almacenamiento de 256 GB y 8 GB de RAM, este stick ofrece un rendimiento fluido y rápido, ideal para aplicaciones populares como Netflix y Disney+. Su sistema operativo 13.1 garantiza una interfaz intuitiva y fácil de navegar, mientras que su conectividad Wi-Fi te permite acceder a contenido en línea sin complicaciones." },
+                    { src: "img/producto2_1.jpeg", descripcion: "Accesorios incluidos" }
+                ]
+            },
+            { 
+                nombre: "STIK GAME 2.4G WIRELESS", 
+                precio: 48990, 
+                imagenes: [
+                    { src: "img/producto3.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto3_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "SOPORTE TV 14 - 55", 
+                precio: 18999, 
+                imagenes: [
+                    { src: "img/producto4.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto4_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Humidificador H20 arom led", 
+                precio: 14999, 
+                imagenes: [
+                    { src: "img/producto5.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto5_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "TV BOX MXQ PRO 5G AGOTADO", 
+                precio: 0, 
+                imagenes: [
+                    { src: "img/producto6.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto6_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "JOYSTICK SONY PS4", 
+                precio: 28000, 
+                imagenes: [
+                    { src: "img/producto7.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto7_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Auri Inal Galaxy Tour Pro 4 SAMSUNG", 
+                precio: 37500, 
+                imagenes: [
+                    { src: "img/producto8.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto8_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Termo combo Stanley + mate + bombilla", 
+                precio: 39990, 
+                imagenes: [
+                    { src: "img/producto9.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto9_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Vaso cervecero con parlante y abridor STANLEY", 
+                precio: 19500, 
+                imagenes: [
+                    { src: "img/producto10.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto10_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Frapera Hieleras Parlante  Recargable Rgb Led", 
+                precio: 33500, 
+                imagenes: [
+                    { src: "img/producto11.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto11_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Parlante Jbl GO 3 Bluetooth Portátil", 
+                precio: 26800, 
+                imagenes: [
+                    { src: "img/producto12.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto12_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Vaso cervecero con abridor 600ml", 
+                precio: 17500, 
+                imagenes: [
+                    { src: "img/producto13.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto13_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Linterna P50 Táctica Militar Led Zoom Recargable", 
+                precio: 14990, 
+                imagenes: [
+                    { src: "img/producto14.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto14_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Reflector Solar - Lampara Jardín Exterior", 
+                precio: 24990, 
+                imagenes: [
+                    { src: "img/producto15.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto15_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Auriculares Estéreo Sony Wireless Bluetooth", 
+                precio: 38990, 
+                imagenes: [
+                    { src: "img/producto16.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto16_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Reflector LED 30W de Alta Potencia para Ext e Int", 
+                precio: 18000, 
+                imagenes: [
+                    { src: "img/producto17.jpg", descripcion: "Vista frontal del mini proyector" },
+                    { src: "img/producto17_1.jpg", descripcion: "Mini proyector en uso" }
+                ]
+            },
+            { 
+                nombre: "Reflector LED 10W de Alta Potencia para Ext e Int", 
+                precio: 15000, 
+                imagenes: [
+                    { src: "img/producto18.jpg", descripcion: "Control inalámbrico en presentación" },
+                    { src: "img/producto18_1.jpg", descripcion: "Doble control para multijugador" }
+                ]
+            }
+        ];
+        const claveCorrecta = "dgshop2024";
+        let carrito = [];
+        let productoActual = null;
+        let imagenActual = 0;
+
+        function verificarClave() {
+            const claveIngresada = document.getElementById("clave").value;
+            if (claveIngresada === claveCorrecta) {
+                document.getElementById("login").classList.add("d-none");
+                document.getElementById("contenido").classList.remove("d-none");
+                cargarCatalogo();
+            } else {
+                alert("Clave incorrecta");
+            }
+        }
+
+        function cargarCatalogo() {
+            const catalogo = document.getElementById("catalogo");
+            catalogo.innerHTML = "";
+            productos.forEach((producto, index) => {
+                catalogo.innerHTML += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="${producto.imagenes[0].src}" class="card-img-top" alt="${producto.nombre}" onclick="mostrarImagen(${index}, 0)">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">${producto.nombre}</h5>
+                                <p class="card-text">$${producto.precio}</p>
+                                <button class="btn btn-primary" onclick="agregarAlCarrito(${index})">Agregar al carrito</button>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function mostrarImagen(productoIndex, imagenIndex) {
+            productoActual = productoIndex;
+            imagenActual = imagenIndex;
+            actualizarImagen();
+            const modal = new bootstrap.Modal(document.getElementById('modalImagen'));
+            modal.show();
+        }
+
+        function actualizarImagen() {
+            const imagen = productos[productoActual].imagenes[imagenActual];
+            document.getElementById("imagenAmpliada").src = imagen.src;
+            document.getElementById("descripcionImagen").innerText = imagen.descripcion;
+            
+            // Habilitar o deshabilitar los botones de navegación
+            document.getElementById("prevButton").disabled = imagenActual === 0;
+            document.getElementById("nextButton").disabled = imagenActual === productos[productoActual].imagenes.length - 1;
+        }
+
+        function navegarImagen(direccion) {
+            imagenActual += direccion;
+            actualizarImagen();
+        }
+
+        function agregarAlCarrito(index) {
+            carrito.push(productos[index]);
+            actualizarCarrito();
+            mostrarToast("Producto agregado al carrito");
+        }
+
+        function mostrarToast(mensaje) {
+            const toastMessage = document.getElementById("toastMessage");
+            toastMessage.innerText = mensaje;
+
+            const toast = new bootstrap.Toast(document.getElementById('toast'));
+            toast.show();
+        }
+
+        function actualizarCarrito() {
+            document.getElementById("contador-carrito").innerText = carrito.length;
+            const listaCarrito = document.getElementById("listaCarrito");
+            listaCarrito.innerHTML = "";
+            let total = 0;
+            carrito.forEach((producto) => {
+                listaCarrito.innerHTML += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${producto.nombre}
+                        <span class="badge bg-primary rounded-pill">$${producto.precio}</span>
+                    </li>`;
+                total += producto.precio;
+            });
+            document.getElementById("totalCarrito").innerText = total;
+        }
+
+        function mostrarCarrito() {
+            actualizarCarrito();
+            const modalCarrito = new bootstrap.Modal(document.getElementById('modalCarrito'));
+            modalCarrito.show();
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            actualizarCarrito();
+        }
+
+        function finalizarCompra() {
+            if (carrito.length === 0) {
+                alert("El carrito está vacío.");
+                return;
+            }
+
+            let mensaje = "Hola, quiero comprar:\n";
+            carrito.forEach(producto => {
+                mensaje += `- ${producto.nombre} por $${producto.precio}\n`;
+            });
+
+            const url = `https://wa.me/5491120226907?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, "_blank");
+
+            vaciarCarrito();
+        }
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
