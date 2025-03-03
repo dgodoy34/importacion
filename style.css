@@ -138,15 +138,21 @@ button:hover {
     }
 }
 
+#contenido header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos */
+    text-align: center;
+}
+
 #contenido header h1 {
-    display: inline-block;
-    vertical-align: middle;
     font-size: 2rem;
+    margin-bottom: 0.5rem; /* Espacio entre h1 y h2 */
 }
 
 #contenido header h2 {
-    display: block;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    color: gray;
 }
 
 
@@ -157,14 +163,5 @@ button:hover {
 }
 
 #contenido header h1 {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
-
-#contenido header h2 {
-    display: block;
-    font-size: 1rem;
-}
-
-
