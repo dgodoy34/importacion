@@ -15,7 +15,12 @@
         <input type="password" id="clave" class="form-control w-50 mx-auto" placeholder="Ingresar clave">
         <button class="btn btn-primary mt-2" onclick="verificarClave()">Ingresar</button>
         <p id="mensaje"></p>
+        
     </div>
+    <!--div class="container text-center mt-5">
+        <h1>¡Bienvenido a mi catálogo!</h1>
+        <p class="lead">Número de visitas: <span id="contador" class="font-weight-bold"></span></p>
+      </div-->
 
     <!-- Contenido de la tienda -->
     <div id="contenido" class="container mt-5 d-none">
@@ -402,6 +407,15 @@
             vaciarCarrito();
         }
     </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TGEG44ECYD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TGEG44ECYD');
+</script>
 </body>
 </html>
 
