@@ -426,6 +426,11 @@
   gtag('js', new Date());
 
   gtag('config', 'G-TGEG44ECYD');
+   // Protección contra clic derecho
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('El código fuente está protegido. Contacta al desarrollador para más información.');
+        });
 </script>
 </body>
 </html>
